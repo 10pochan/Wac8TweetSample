@@ -3,4 +3,14 @@ class TweetsController < ApplicationController
   	@tweets = Tweet.all
   	@terrt = Tweet.new
   end
+
+  def create
+    @tweet = Tweet.new(tweet_params)
+    @tweet.save
+    redirect_to tweets_path
+  end
+  private
+  def tweet_params
+  	params.require(:tweet).permit(:body)
+  end
 end
